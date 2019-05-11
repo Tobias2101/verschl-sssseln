@@ -25,28 +25,47 @@ namespace verschlüsssseln
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String Wort; 
+            String Wort;
 
-            int B = 00, A = 01, U = 02, M = 03, D = 04, E = 05, F = 06, G = 07, H = 08, I = 09, J = 10, K = 11, L = 12, N = 13, O = 14, P = 15, Q = 16, R = 17, S = 18, T = 19, V = 20, W = 21, X = 22, Y = 23, Z = 24;
+          // String[] Buch = { "B", "A", "U", "M", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "N", "O", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z" };
 
-            Wort = Convert.ToString(textBox1.Text);
+            String HH = "BAUMCDEFGHIJKLNOPQRSTVWXYZ";
+            Char[] Buch = HH.ToCharArray();
 
-            char[] array = Wort.ToCharArray();
 
+             Wort = Convert.ToString(textBox1.Text);
+            Char[] array = Wort.ToCharArray();
+
+           // string[] array = Wort.Split();
+            // int index = Array.IndexOf(strings, searchString);
+
+             int[] code = new int[array.Length];
+           
+           for (int i = 0; i < array.Length; i++)
+            {
+                code[i] = Array.IndexOf(Buch, array[i]);
+           }
+
+            String[] output = new string[array.Length];
 
             for (int i = 0; i < array.Length; i++)
             {
-
-                array[i] = array[i];
-
-
-
+                if(code[i] < 10)
+                {
+                    output[i] = Convert.ToString("0" + code[i]);
+                }
+                else
+                {
+                    output[i] = Convert.ToString(code[i]);
+                }
             }
 
 
+            String schluessel = string.Join(" ", output);
+
+            textBox2.Text = Convert.ToString(schluessel);
 
 
-            textBox2.Text = Convert.ToString(array[0]);
 
         }
     }
